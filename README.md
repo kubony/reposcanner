@@ -59,8 +59,8 @@ dist/
 ```
 reposcanner/
 ├── collect_project_files.py
-├── additional_ignore.txt
 └── project_info/
+    ├── additional_ignore.txt
     ├── overview_project.txt
     ├── detailed_project_info.txt
     └── project_log.txt
