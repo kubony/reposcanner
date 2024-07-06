@@ -1,60 +1,60 @@
 # RepoScanner
 
-RepoScanner는 주어진 디렉토리의 파일과 디렉토리 구조를 스캔하고, 프로젝트 개요 및 상세 정보를 수집하는 Python 스크립트입니다. 이 스크립트는 `.gitignore` 파일과 추가 무시 패턴을 참조하여 특정 파일 및 디렉토리를 제외할 수 있습니다.
+RepoScanner is a Python script that scans the directory structure of a given repository, collecting an overview and detailed information about the project files. It references `.gitignore` files and additional ignore patterns to exclude specific files and directories.
 
-repo의 구조와 내용을 LLM에게 쉽게 파악시키기 위한 목적으로 만들었습니다.
+The purpose of this tool is to make it easier for language models (LLMs) to understand the structure and contents of a repository.
 
-## 기능
+## Features
 
-- 디렉토리 구조를 스캔하고, 파일 및 디렉토리 목록을 생성
-- `.gitignore` 파일과 사용자 정의 무시 패턴을 사용하여 특정 파일 및 디렉토리 제외
-- 프로젝트 개요와 상세 정보를 별도의 파일에 저장
-- 처리 로그를 작성하여 어떤 파일이 포함되었고, 어떤 파일이 제외되었는지 기록
+- Scans directory structure and generates a list of files and directories
+- Uses `.gitignore` files and custom ignore patterns to exclude specific files and directories
+- Saves project overview and detailed information in separate files
+- Logs which files are included and which are excluded
 
-## 설치
+## Installation
 
-1. 이 레포지토리를 클론합니다:
+1. Clone this repository:
 
     ```sh
     git clone https://github.com/kubony/reposcanner.git
     cd reposcanner
     ```
 
-2. Python 3.x가 설치되어 있는지 확인합니다.
+2. Ensure Python 3.x is installed.
 
-## 사용법
+## Usage
 
-1. `collect_project_files.py` 파일을 실행합니다:
+1. Run the `collect_project_files.py` script:
 
     ```sh
     python collect_project_files.py
     ```
 
-2. 스크립트가 실행된 디렉토리의 루트에서 `project_info` 폴더가 생성되고, 다음과 같은 파일들이 생성됩니다:
-    - `overview_project.txt`: 디렉토리 구조 개요
-    - `detailed_project_info.txt`: 각 파일의 내용 상세 정보
-    - `project_log.txt`: 처리 로그
+2. The script will create a `project_info` folder at the root of the executed directory with the following files:
+    - `overview_project.txt`: Overview of the directory structure
+    - `detailed_project_info.txt`: Detailed information of each file's content
+    - `project_log.txt`: Log of the process
 
-### 추가 무시 패턴
+### Additional Ignore Patterns
 
-`additional_ignore.txt` 파일을 생성하여 추가적인 무시 패턴을 정의할 수 있습니다. 이 파일은 프로젝트 루트에 위치해야 하며, 각 패턴은 새로운 줄에 작성됩니다.
+You can define additional ignore patterns by creating an `additional_ignore.txt` file. This file should be located at the root of the project and each pattern should be written on a new line.
 
-예시:
+Example:
 
 ```
-### 무시할 디렉토리
+### Directories to ignore
 node_modules/
 dist/
 .build/
 
-### 무시할 파일
+### Files to ignore
 *.log
 *.tmp
 ```
 
-## 예제
+## Example
 
-프로젝트 구조 예제:
+Project structure example:
 
 ```
 reposcanner/
@@ -66,23 +66,23 @@ reposcanner/
     └── project_log.txt
 ```
 
-## 기여
+## Contributing
 
-기여를 환영합니다! 버그를 보고하거나 기능 요청을 남기려면 [Issues](https://github.com/kubony/reposcanner/issues) 페이지를 방문하세요.
+Contributions are welcome! To report bugs or request features, please visit the [Issues](https://github.com/kubony/reposcanner/issues) page.
 
-1. 이 레포지토리를 포크합니다.
-2. 새로운 브랜치를 만듭니다 (`git checkout -b feature/your-feature`).
-3. 변경 사항을 커밋합니다 (`git commit -am 'Add some feature'`).
-4. 브랜치에 푸시합니다 (`git push origin feature/your-feature`).
-5. 풀 리퀘스트를 생성합니다.
+1. Fork this repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Create a Pull Request.
 
-## 라이선스
+## License
 
-이 프로젝트는 MIT 라이선스 하에 라이선스가 부여됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하십시오.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 문의
+## Contact
 
-질문이나 도움이 필요하면 레포지토리 소유자에게 문의하십시오.
+For questions or help, contact the repository owner.
 
-- 이메일: [your-email@example.com](mailto:your-email@example.com)
+- Email: [your-email@example.com](mailto:your-email@example.com)
 - GitHub: [kubony](https://github.com/kubony)
