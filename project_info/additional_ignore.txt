@@ -1,0 +1,93 @@
+# General
+**/dummy.*
+**/project_log.*
+**/overview_project.*
+**.git*
+**/*.gitignore*
+**/node_modules
+**/dist
+**/build
+**/.cache
+**/tmp
+**/temp
+**/*~
+**/*.bak
+**/ios/.gitignore
+*.venv/
+**project_info/*.*
+
+# Config files
+package.json
+pnpm-lock.yaml
+tsconfig.json
+**/*.config.js
+**/*.config.ts
+**/tsconfig*.json
+**/jest.config.*
+**/.eslintrc*
+**/.prettierrc*
+**/.env*
+*.lock
+
+# Images and assets
+**/*.svg
+**/*.jpeg
+**/*.png
+**/*.gif
+**/*.ico
+**/assets/
+
+# Documentation
+**/README*
+**/LICENSE*
+**/*.md
+
+# IDE related
+**/.vscode
+**/.idea
+**/*.sublime-*
+**/*.iml
+**/*.ipr
+**/*.iws
+
+# Logs and debugging
+**/*.log
+**/coverage/
+
+# TypeScript
+**/*.d.ts
+
+# Testing
+**/__tests__
+**/*.test.*
+**/*.spec.*
+
+# Flutter specific
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/pubspec.lock
+**/ios/Flutter/
+**/ios/.symlinks/
+**/ios/Pods/
+**/android/.gradle
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
+**/android/gradle-wrapper.jar
+**/.metadata
+**/.packages
+**/doc/api/
+**/.doc_comments/
+**/flutter_export_environment.sh
+**/local.properties
+
+**android/*
+**ios/*
+**macos/*
+*.dev/*
+**windows/*
+**linux/*
+**web/*
+**test/*
