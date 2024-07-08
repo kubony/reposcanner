@@ -1,5 +1,6 @@
 import os
 import fnmatch
+import sys
 
 def get_ignore_patterns(file_path):
     patterns = []
@@ -25,23 +26,22 @@ def get_gitignore_patterns(base_dir):
 
 def should_include(file_path, patterns):
     for pattern in patterns:
-        # Absolute pattern matching
         if pattern.startswith('/'):
             if fnmatch.fnmatch(file_path, pattern):
                 return False
             if os.path.isdir(file_path) and fnmatch.fnmatch(file_path + '/', pattern):
                 return False
         else:
-            # Relative pattern matching
             if fnmatch.fnmatch(file_path, pattern) or fnmatch.fnmatch(os.path.basename(file_path), pattern):
                 return False
             if os.path.isdir(file_path) and fnmatch.fnmatch(os.path.basename(file_path) + '/', pattern):
                 return False
     return True
 
-def collect_project_files(base_dir='.', output_dir='project_info'):
+def collect_project_files(base_dir='.'):
     script_dir = os.path.abspath(base_dir)
-    abs_output_dir = os.path.join(script_dir, output_dir)
+    utils_dir = os.path.join(script_dir, 'utils')
+    abs_output_dir = os.path.join('utils', 'scanned_project_info')
 
     if not os.path.exists(abs_output_dir):
         os.makedirs(abs_output_dir)
@@ -49,12 +49,11 @@ def collect_project_files(base_dir='.', output_dir='project_info'):
     overview_filename = os.path.join(abs_output_dir, 'overview_project.txt')
     detailed_filename = os.path.join(abs_output_dir, 'detailed_project_info.txt')
     log_filename = os.path.join(abs_output_dir, 'project_log.txt')
-    additional_ignore_path = os.path.join(script_dir, 'additional_ignore.txt')
+    additional_ignore_path = os.path.join(utils_dir, 'additional_ignore.txt')
 
-    gitignore_patterns = get_gitignore_patterns(script_dir)
+    gitignore_patterns = get_gitignore_patterns(base_dir)
     additional_ignore_patterns = get_ignore_patterns(additional_ignore_path)
     patterns = list(set(gitignore_patterns + additional_ignore_patterns))
-    patterns.append(output_dir)  # Exclude the output directory
 
     open(overview_filename, 'w').close()
     open(detailed_filename, 'w').close()
@@ -67,7 +66,6 @@ def collect_project_files(base_dir='.', output_dir='project_info'):
         for root, dirs, files in os.walk(script_dir):
             if '.git' in root:
                 continue
-            # Check directory patterns to remove excluded directories
             dirs[:] = [d for d in dirs if should_include(os.path.relpath(os.path.join(root, d), script_dir), patterns)]
             for file in files:
                 file_path = os.path.join(root, file)
@@ -87,11 +85,9 @@ def collect_project_files(base_dir='.', output_dir='project_info'):
                 else:
                     logfile.write(f"Excluded by pattern: {relative_path}\n")
         
-        # Write overview project structure
         for root, dirs, files in os.walk(script_dir):
             if '.git' in root:
                 continue
-            # Check directory patterns to remove excluded directories
             dirs[:] = [d for d in dirs if should_include(os.path.relpath(os.path.join(root, d), script_dir), patterns)]
             relative_path = os.path.relpath(root, script_dir)
             if should_include(relative_path, patterns):
@@ -108,4 +104,5 @@ def collect_project_files(base_dir='.', output_dir='project_info'):
                 logfile.write(f"Excluded directory by pattern: {relative_path}\n")
 
 if __name__ == "__main__":
-    collect_project_files()
+    base_dir = sys.argv[1] if len(sys.argv) > 1 else '.'
+    collect_project_files(base_dir)
